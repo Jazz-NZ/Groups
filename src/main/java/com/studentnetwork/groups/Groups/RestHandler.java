@@ -25,7 +25,7 @@ public class RestHandler {
 
     //{userId}
     @RequestMapping("/{groupId}")
-    public List<PostDB> getItem(@PathVariable("groupId") String groupId){
+    public List<PostDB> getItem(@PathVariable("groupId") String groupId) {
 
 
         int gId = Integer.parseInt(groupId);
@@ -33,13 +33,13 @@ public class RestHandler {
         List<PostDB> posts = postRepository.findAllByGroupId(gId);
         //System.out.println(posts.stream().findFirst().get().getText());
 
-        for (PostDB postdb: posts) {
+        for (PostDB postdb : posts) {
             System.out.println(postdb.getText());
-            System.out.println("Novo");
+
 
         }
 
-        return  posts;
+        return posts;
 
 //
 //        Group group = new Group();
@@ -60,6 +60,17 @@ public class RestHandler {
 
                 )));
 */
+    }
+
+
+    //method for adding new post
+    @RequestMapping("/post/{userID}/{groupID}/{postText}")
+    public String getPost(@PathVariable("userID") String userID, @PathVariable("groupID") String groupID,
+                          @PathVariable("postText") String postText) {
+
+        System.out.println("Saving new post");
+        return "Saved";
+
     }
 
 
