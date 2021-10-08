@@ -68,6 +68,13 @@ public class RestHandler {
     public String getPost(@PathVariable("userID") String userID, @PathVariable("groupID") String groupID,
                           @PathVariable("postText") String postText) {
 
+        PostDB post = new PostDB();
+        post.setGroupId(Integer.parseInt(groupID));
+        post.setUserId(Integer.parseInt(userID));
+        post.setText(postText);
+
+        postRepository.save(post);
+
         System.out.println("Saving new post");
         return "Saved";
 
